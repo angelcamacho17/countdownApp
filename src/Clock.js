@@ -10,6 +10,7 @@ class Clock extends Component{
 			minutes:0,
 			seconds:0
 		}
+		this.leading0= this.leading0.bind(this);
 	}
 
 	componentWillMount(){
@@ -18,6 +19,10 @@ class Clock extends Component{
 
 	componentDidMount(){
 		setInterval(()=> this.getTimeUntil(this.props.deadline),1000)
+	}
+
+	leading0(num){
+		return num < 10 ? '0'+num : num;
 	}
 
 	getTimeUntil(deadline){
@@ -32,10 +37,10 @@ class Clock extends Component{
 	render(){
 		return(
 			<div>
-				<div className="Clock-days">{this.state.days} days</div>
-				<div className="Clock-hours">{this.state.hours} hours</div>
-				<div className="Clock-minutes">{this.state.minutes} minutes</div>
-				<div className="Clock-seconds">{this.state.seconds} seconds</div>
+				<div className="Clock-days">{this.leading0(this.state.days)} days</div>
+				<div className="Clock-hours">{this.leading0(this.state.hours)} hours</div>
+				<div className="Clock-minutes">{this.leading0(this.state.minutes)} minutes</div>
+				<div className="Clock-seconds">{this.leading0(this.state.seconds)} seconds</div>
 			</div>
 		)
 	}
